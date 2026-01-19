@@ -1,0 +1,20 @@
+
+python scripts/test_tao_count_ovac.py  --output_file results/tao_results/tao-count-ovac-predicted.json  --data_dir data/VideoCount/TAO-Count  --mode balanced  --downsample_factor  2  --output_dir results/tao_results
+
+
+python scripts/test_penguins.py --data_dir data/VideoCount/Penguins --output_dir results/pengiuns_dataset --output_file results/penguins-count-predicted.json
+
+
+python scripts/evaluate_countbench.py --benchmark_file data/CountBench.json --output_file results/countbench/predictions.json --failures_file results/countbench/failures.json --metrics_file results/countbench/metrics.json --use_two_pass --max_exemplars 3 --confidence_threshold 0.5 --iom_threshold 0.5 --cache_dir results/countbench/image_cache--device cuda
+
+
+python scripts/evaluate_pixmo.py --benchmark_file results/pixmo/pixmo_test.json --output_file results/pixmo/test/pixmo_predictions.json --metrics_file results/pixmo/test/pixmo_metrics.json  --failures_file results/pixmo/pixmo_failures.json  --use_two_pass --confidence_threshold 0.5 --iom_threshold 0.5  --max_exemplars 3    --cache_dir results/pixmo/pixmo_cache    
+
+
+python scripts/evaluate_pixmo.py --benchmark_file results/pixmo/pixmo_val.json --output_file results/pixmo/test/pixmo_predictions.json --metrics_file results/pixmo/test/pixmo_metrics.json  --failures_file results/pixmo/pixmo_failures.json  --use_two_pass --confidence_threshold 0.5 --iom_threshold 0.5  --max_exemplars 3    --cache_dir results/pixmo/pixmo_cache    
+
+
+python count_in_images_ovac.py  --image_path data/VideoCount/MOT20-Count/frames/MOT20-05/img1/000001.jpg  --input_text "person" --use_two_pass  --max_exemplars 2  --confidence_threshold 0.05  --iom_threshold 0.5  --save_vis  --show_id  --id_font_size 28   --vis_path ./results/sam_img/demo_pic.png  --output_file ./results/sam_img/counts_img.json
+
+
+python count_in_videos_ovac.py --mode balanced --video_dir examples/scc --input_text "car" --output_dir results/vid_count --downsample_factor 1 --output_file results/vid_count/vid_count_ovac.json     
